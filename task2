@@ -1,0 +1,48 @@
+class Book():
+
+    def __init__(self, author, name, year, genre, review=""):
+        self.author = author
+        self.name = name
+        self.year = year
+        self.genre = genre
+        self.review = review
+
+    def __str__(self):
+        book = f"Книга {self.name} - Автор {self.author} - Рік випуску {self.year} - Жанр {self.genre} "
+        review = f"Відгук: {self.review}"
+        return book + review
+
+    def __eq__(self, other):
+        if not isinstance(other, Book):
+            return False
+        else:
+            return self.author == other.author and self.name == other.name and self.year == other.year and self.genre == other.genre
+
+
+class Review():
+    def __init__(self, text):
+        self.text = text
+
+    def __str__(self):
+        return self.text
+
+
+def main():
+    book1 = Book('author1', 'name1', 1999, 'genre1')
+    book2 = Book('author2', 'name2', 2000, 'genre2')
+    book3 = Book('author3', 'name2', 2001, 'genre3')
+    book4 = Book('author2', 'name2', 2000, 'genre2')
+
+    book1.review = Review('good')
+    book2.review = Review('awersome')
+    book3.review = Review('')
+    book4.review = Review('nice')
+
+    print(book1)
+    print(book2)
+    print(book3)
+    print(book4)
+
+
+if __name__ == '__main__':
+    main()
