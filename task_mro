@@ -1,0 +1,20 @@
+class Grandmother:
+    print("Бабушка")
+
+class Mother(Grandmother):
+    print("Мама")
+
+class Daughter(Mother, Grandmother):
+    print("Дочка")
+
+class Child(Daughter, Mother, Grandmother):
+    print("Ребенок")
+
+def main():
+    print(Grandmother.mro())
+    print(Mother.mro())
+    print(Daughter.mro())
+    print(Child.mro())
+
+if __name__ == "__main__":
+    main()
