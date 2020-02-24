@@ -3,7 +3,7 @@ my_dict = {}
 def add_link(my_dict):
     link = input("Введите ссылку: ")
     servis = input("Введите сервис: ")
-    if link in my_dict:
+    if link in my_dict.values() or servis in my_dict:
         print(f"Сервис {servis} уже есть в списке -> url: {link}")
     my_dict[servis] = link
 
