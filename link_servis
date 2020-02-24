@@ -1,0 +1,32 @@
+my_dict = {}
+
+def add_link(my_dict):
+    link = input("Введите ссылку: ")
+    servis = input("Введите сервис: ")
+    if link in my_dict:
+        print(f"Сервис {servis} уже есть в списке -> url: {link}")
+    my_dict[servis] = link
+
+def show(my_dict):
+    link_show = input("Введите сервис: ")
+    link = my_dict.get(link_show, None)
+    if link:
+        print(link)
+    else:
+        print("Ссылки не существует")
+
+def main():
+    
+    while True:
+        n = int(input("[1] - Добавить ссылку \n[2] - Посмотреть существующие ссылки \n[3] - Выход\n -> "))
+        if n == 1:
+            add_link(my_dict)
+        elif n == 2:
+            show(my_dict)
+        elif n == 3:
+            return False
+        else:
+            print("Error 404")
+
+if __name__ == "__main__":
+    main()
