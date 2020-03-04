@@ -1,0 +1,13 @@
+import json
+
+data = {
+    "name": "Ivan",
+    "last_neme": "Petrov",
+    "age": 20
+}
+
+with open("advanced/output.json", "w") as f:
+    json.dump(data, f)
+
+with open("advanced/output.json", "r") as file:
+    print(json.load(file))
