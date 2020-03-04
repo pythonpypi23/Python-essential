@@ -1,0 +1,31 @@
+import socket
+
+clients = []
+
+server = ("localhost", 5000)
+
+sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+sock.bind(server)
+print("-Run server success-")
+
+while True:
+    try:
+        data, address = sock.recvfrom(1024)
+        if address not in clients:
+            clients.append(address)
+            print(f"-{address[0]}-{address[1]} ", end="")
+            print(data.decode("utf-8"))
+            sock.sendto(data, address)
+        else:
+            data_request = data.decode("utf-8")
+            print(data_request)
+            for client in clients:
+                if client != address:
+                    print(client)
+                    sock.sendto(data.decode("utf-8"), client)
+    except:
+        print("\n -Server crushed-")
+        break
+sock.close()
+
+# не знаю чому, но в мене завжди сервер крашиться, коли якийсь клієнт пише повідомлення.
