@@ -1,0 +1,29 @@
+import socket
+
+client = ("localhost", 0)
+server = ("localhost", 5000)
+sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+sock.bind(client)
+sock.setblocking(False)
+
+shotdown = True
+join = True
+
+name = input("Enter name: ")
+
+while shotdown:
+    if join:
+        sock.sendto(f"{name} is join to server".encode("utf-8"),server)
+        join = not join
+    else:
+        try:
+            message = input()
+            if message:
+                send = f"{name} : {message}"
+                sock.sendto(send.encode("utf-8"), server)
+            else:
+                continue
+        except:
+            sock.sendto(f"{name}: left chat".encode("utf-8"),server)
+            shotdown = not shotdown
+sock.close()
