@@ -1,0 +1,24 @@
+from concurrent.futures import ThreadPoolExecutor, ProcessPoolExecutor
+import time
+
+def handler(started, finished):
+    factorial = 1
+    for i in range(started, finished+1):
+        factorial *= i
+    return factorial
+
+def run_by_executor(executor_class, max_workers=4):
+    executor = executor_class(max_workers=max_workers)
+    start_time = time.time()
+
+    future1 = executor.submit(handler, started = 1, finished = 2)
+    future2 = executor.submit(handler, started=3, finished = 10)
+
+    result = future1.result() * future2.result()
+    print(f'Result: {result} \n Time: {time.time() - start_time} by executor - {executor_class.__name__}')
+
+print("Executor start")
+run_by_executor(ThreadPoolExecutor)
+# run_by_executor(ProcessPoolExecutor)
+
+# run_by_executor(ProcessPoolExecutor) - викликає ошибку, ThreadPoolExecutor - працює нормально
